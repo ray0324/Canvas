@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "amd",
+        "lib": [
+            "es2015",
+            "es2017",
+            "dom"
+        ],
+        "target": "es5",
+        "allowJs": true,
+        "experimentalDecorators": true
+    },
+    "include": [
+        "src/**/*.ts"
+    ]
+}
