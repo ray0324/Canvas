@@ -2,9 +2,13 @@ import { Element } from './element';
 import { IConfig } from './interface';
 
 export default class Shape extends Element {
+  // 图形类型
   type: string;
+  // 描边
   canStroke: boolean = true;
+  // 填充
   canFill: boolean = false;
+
   constructor(type: string, config: IConfig= {}) {
     super(config);
     this.type = type;
@@ -31,7 +35,7 @@ export default class Shape extends Element {
       ctx.strokeStyle = this.attrs.strokeStyle;
       ctx.textAlign = this.attrs.textAlign;
       this.attrs.lineDash && ctx.setLineDash(this.attrs.lineDash);
-      if (this.canFill) {
+      if (this.canFill && this.attrs.fillStyle) {
         ctx.fill();
       }
       if (this.canStroke) {

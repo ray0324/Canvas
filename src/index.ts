@@ -26,7 +26,7 @@ var ctx =  canvas.getContext('2d');
 // ctx.textAlign = this.attrs.textAlign;
 
 
-var canvasObj = new Canvas({
+var can = new Canvas({
   width: 600,
   height: 400,
   widthCanvas: 600,
@@ -36,7 +36,7 @@ var canvasObj = new Canvas({
   context: ctx,
 })
 
-console.log(canvasObj);
+// console.log(canvasObj);
 let c1 = new Circle({
   x: 200,
   y: 200,
@@ -44,12 +44,26 @@ let c1 = new Circle({
   lineWidth: 1,
   strokeStyle: 'red'
 })
-console.log(c1);
 
-canvasObj.addShape(c1);
-canvasObj.addShape(c1);
-console.log(canvasObj);
-canvasObj.draw();
+let c2 = new Circle({
+  x: 100,
+  y: 200,
+  r: 40,
+  lineWidth: 1,
+  strokeStyle: 'red',
+  fillStyle:'red'
+})
+
+
+can.addShape(c1);
+can.addShape(c2);
+console.log(can);
+
+// can.addShape(c1);
+// console.log(can);
+can.draw();
+c1.attr('strokeStyle', 'blue');
+// c1.attr('strokeStyle', 'blue');
 
 /*
 

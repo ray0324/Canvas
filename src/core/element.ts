@@ -7,20 +7,26 @@ import {
 import guid from './id';
 
 export class Element implements IElement {
-  id: number;
-  zIndex: number;
-  visible: boolean;
-  destroyed: boolean;
-  parent: IElement;
-  context: CanvasRenderingContext2D;
-  attrs: Partial<IAttr>;
-  boundary: IBoundary;
+  // 元素ID
+  id: number = guid();
+  // 元素层级
+  zIndex: number = 0;
+  // 元素可见性
+  visible: boolean = true;
+  // 元素是否销毁
+  destroyed: boolean = false;
+  // 父元素
+  parent: IElement = null;
+  // 绘图环境
+  context: CanvasRenderingContext2D = null;
+  // 元素特性
+  attrs: Partial<IAttr> = null;
+  // 元素边界
+  boundary: IBoundary = null;
 
   constructor(config: IConfig = {}) {
     const { attrs } = config;
     if (attrs) this.attrs = Object.assign({}, this.attrs, attrs);
-    this.id = guid();
-    this.zIndex = null;
   }
 
   attr(): Partial<IAttr>;

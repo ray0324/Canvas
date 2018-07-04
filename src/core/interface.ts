@@ -12,6 +12,7 @@ export interface IAttr {
   textAlign: string;
   textBaseline: string;
   lineDash: number[];
+  [key:string]:any
 }
 
 export interface IBoundary {
