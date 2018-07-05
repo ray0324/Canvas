@@ -1,10 +1,16 @@
 import Shape from '../core/shape';
 import {IAttr} from '../core/interface';
 
-export default class Circle extends Shape {
-  attrs: Partial<IAttr>;
+interface ICircle extends Partial<IAttr> {
+  x: number;
+  y: number;
+  r: number;
+}
 
-  constructor(attrs: Partial<IAttr>) {
+export default class Circle extends Shape {
+  attrs: ICircle;
+
+  constructor(attrs: ICircle) {
     super('circle', { attrs });
     this.canFill = true;
   }

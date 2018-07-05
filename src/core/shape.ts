@@ -3,11 +3,11 @@ import { IConfig } from './interface';
 
 export default class Shape extends Element {
   // 图形类型
-  type: string;
+  protected type: string;
   // 描边
-  canStroke: boolean = true;
+  protected canStroke: boolean = true;
   // 填充
-  canFill: boolean = false;
+  protected canFill: boolean = false;
 
   constructor(type: string, config: IConfig= {}) {
     super(config);

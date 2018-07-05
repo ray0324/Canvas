@@ -1,5 +1,5 @@
 import Canvas from './canvas';
-import Circle from './shapes/index'
+import {Circle, PolyLine } from './shapes/index';
 
 var canvas = <HTMLCanvasElement>document.querySelector('#c');
 
@@ -54,9 +54,14 @@ let c2 = new Circle({
   fillStyle:'red'
 })
 
+let p1 = new PolyLine({
+  p: [{ x: 0, y: 0 }, { x: 10, y: 10 }, { x: 10, y: 100 }, { x: 120, y: 10 }]
+})
+
 
 can.addShape(c1);
 can.addShape(c2);
+can.addShape(p1);
 console.log(can);
 
 // can.addShape(c1);
