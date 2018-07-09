@@ -72,3 +72,8 @@ export interface IElement {
 export interface IConfig extends Partial<IProp> {
   attrs?: Partial<IAttr>
 }
+
+export type Point = {
+  x: number;
+  y: number;
+}

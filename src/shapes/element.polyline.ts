@@ -1,10 +1,5 @@
 import Shape from '../core/shape';
-import { IAttr } from '../core/interface';
-
-type Point = {
-  x: number;
-  y: number;
-}
+import { IAttr, Point } from '../core/interface';
 
 interface IPolyLine extends Partial<IAttr> {
   p: Point[]
