@@ -8,21 +8,26 @@ import guid from './id';
 
 export class Element implements IElement {
   // 元素ID
-  id: number = guid();
+  public id: number = guid();
   // 元素层级
-  zIndex: number = 0;
+  public zIndex: number = 0;
   // 元素可见性
-  visible: boolean = true;
+  public visible: boolean = true;
   // 元素是否销毁
-  destroyed: boolean = false;
+  public destroyed: boolean = false;
   // 父元素
-  parent: IElement = null;
+  public parent: IElement = null;
   // 绘图环境
-  context: CanvasRenderingContext2D = null;
+  public context: CanvasRenderingContext2D = null;
   // 元素特性
-  attrs: Partial<IAttr> = null;
+  public attrs: Partial<IAttr> = {};
   // 元素边界
-  boundary: IBoundary = null;
+  public boundary: IBoundary = {
+    minX: null,
+    minY: null,
+    maxX: null,
+    maxY: null
+  };
 
   constructor(config: IConfig = {}) {
     const { attrs } = config;
@@ -54,16 +59,22 @@ export class Element implements IElement {
     }
   }
 
-  getContext(){
-    return this.context;
+  getBoundary(){
+    return this.boundary;
   }
 
-  saveContext() {
-    this.context.save();
+  setBoundary(){ }
+
+  getContext() {
+    return this.context;
   }
 
   setContext(ctx: CanvasRenderingContext2D) {
     this.context = ctx;
+  }
+
+  saveContext() {
+    this.context.save();
   }
 
   restoreContext() {

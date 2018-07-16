@@ -16,10 +16,10 @@ export interface IAttr {
 }
 
 export interface IBoundary {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
+  minX: number;
+  minY: number;
+  maxX: number;
+  maxY: number;
 }
 
 export interface IProp {
@@ -54,12 +54,15 @@ export interface IElement {
   attr(name: Partial<IAttr>): void;
   attr<T extends keyof IAttr>(name: T, value: IAttr[T]): void;
 
+  getBoundary(): IBoundary;
+
+  setBoundary():void;
+
   getContext(): CanvasRenderingContext2D;
 
+  setContext(ctx: CanvasRenderingContext2D): void;
 
   saveContext():void;
-
-  setContext(ctx: CanvasRenderingContext2D): void;
 
   restoreContext():void;
 
