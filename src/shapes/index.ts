@@ -1,6 +1,6 @@
-import Circle from './element.circle';
-import PolyLine from './element.polyline';
-import Rect from './element.rect';
+import Circle from './circle';
+import PolyLine from './polyline';
+import Rect from './rect';
 
 export {
   Circle,
