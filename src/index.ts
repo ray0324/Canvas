@@ -1,5 +1,5 @@
 import Canvas from './canvas';
-import {Circle, PolyLine, Rect } from './shapes/index';
+import { Circle, PolyLine, Rect } from './shapes/index';
 
 var canvas = <HTMLCanvasElement>document.querySelector('#c');
 
