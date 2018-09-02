@@ -1,5 +1,5 @@
 import { Element } from './element';
-import {IConfig } from'./interface';
+import { IBoundary, IConfig } from'./interface';
 import Shape from './shape';
 
 export default class Group extends Element {
@@ -26,7 +26,20 @@ export default class Group extends Element {
     });
   }
 
+  getBoundary() {
+    return this.children.reduce((prev, cur) => {
+      const boundary = cur.getBoundary();
+      return {
+        minX: prev.minX === null ? boundary.minX : Math.min(prev.minX, boundary.minX),
+        maxX: prev.maxX === null ? boundary.maxX : Math.max(prev.maxX, boundary.maxX),
+        minY: prev.minY === null ? boundary.minY : Math.min(prev.minY, boundary.minY),
+        maxY: prev.maxY === null ? boundary.maxY : Math.max(prev.maxY, boundary.maxY),
+      }
+    },super.getBoundary())
+  }
+
   drawInner() {
+    console.log(this.getBoundary())
     if (this.destroyed) {
       return;
     }

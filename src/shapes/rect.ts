@@ -16,6 +16,16 @@ export default class Rect extends Shape {
     this.canFill = true;
   }
 
+  getBoundary() {
+    const { x, y, width, height } = this.attrs;
+    return {
+      minX: x,
+      maxX: x + width,
+      minY: y,
+      maxY: y + height
+    }
+  }
+
   createPath() {
     const { x, y, width, height } = this.attrs;
     this.context.beginPath();

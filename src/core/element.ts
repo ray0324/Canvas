@@ -21,13 +21,6 @@ export class Element implements IElement {
   public context: CanvasRenderingContext2D = null;
   // 元素特性
   public attrs: Partial<IAttr> = {};
-  // 元素边界
-  public boundary: IBoundary = {
-    minX: null,
-    minY: null,
-    maxX: null,
-    maxY: null
-  };
 
   constructor(config: IConfig = {}) {
     const { attrs } = config;
@@ -59,11 +52,14 @@ export class Element implements IElement {
     }
   }
 
-  getBoundary(){
-    return this.boundary;
+  getBoundary():IBoundary {
+    return {
+      minX: null,
+      minY: null,
+      maxX: null,
+      maxY: null
+    };
   }
-
-  setBoundary(){ }
 
   getContext() {
     return this.context;

@@ -42,8 +42,6 @@ export interface IElement {
   destroyed: boolean;
   // 父级元素
   parent: IElement;
-  // 元素边界
-  boundary: IBoundary;
   // 绘图环境
   context: CanvasRenderingContext2D;
   // 元素特性
@@ -53,12 +51,8 @@ export interface IElement {
   attr<T extends keyof IAttr>(name: T): IAttr[T];
   attr(name: Partial<IAttr>): void;
   attr<T extends keyof IAttr>(name: T, value: IAttr[T]): void;
-
+  // 获取图形边界 类似Photoshop的图形控件
   getBoundary(): IBoundary;
-
-  setBoundary():void;
-
-  getContext(): CanvasRenderingContext2D;
 
   setContext(ctx: CanvasRenderingContext2D): void;
 

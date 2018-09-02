@@ -1,5 +1,5 @@
 import Shape from '../core/shape';
-import { IAttr, Point } from '../core/interface';
+import { IAttr, Point, IBoundary } from '../core/interface';
 
 interface IPolyLine extends Partial<IAttr> {
   p: Point[]
@@ -11,6 +11,19 @@ export default class PolyLine extends Shape {
   constructor(attrs: IPolyLine) {
     super('line', { attrs });
     this.canFill = true;
+  }
+
+  getBoundary() {
+    const { p } = this.attrs;
+    const initialValue: IBoundary = super.getBoundary();
+    return p.reduce((prev,cur)=>{
+      return {
+        minX: prev.minX === null ? cur.x : Math.min(prev.minX,cur.x),
+        maxX: prev.maxX === null ? cur.x : Math.max(prev.maxX, cur.x),
+        minY: prev.minY === null ? cur.x : Math.min(prev.minY, cur.y),
+        maxY: prev.maxY === null ? cur.x : Math.max(prev.maxY, cur.y),
+      }
+    },initialValue)
   }
 
   createPath() {

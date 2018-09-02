@@ -15,7 +15,7 @@ export default class Shape extends Element {
   }
 
   drawInner() {
-    console.log('this');
+    // console.log('this');
     if (this.destroyed) {
       return;
     }
