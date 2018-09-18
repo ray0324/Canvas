@@ -1,13 +1,11 @@
-import { Element } from './element';
-import { IBoundary, IConfig } from'./interface';
+import { Element, IBoundary, IAttr } from './element';
 import Shape from './shape';
 
 export default class Group extends Element {
 
   children: Array<Element> = [];
-
-  constructor(config: IConfig = {}) {
-    super(config);
+  constructor(attrs?: Partial<IAttr>) {
+    super(attrs);
   }
 
   addShape(shape: Shape) {
@@ -15,7 +13,7 @@ export default class Group extends Element {
     this.children.push(shape);
   }
 
-  addGroup(group: Group = new Group()) {
+  addGroup(group: Group) {
     group.parent = this;
     this.children.push(group);
   }
@@ -39,15 +37,19 @@ export default class Group extends Element {
   }
 
   drawInner() {
-    console.log(this.getBoundary())
     if (this.destroyed) {
       return;
     }
     if (this.visible) {
+      this.saveContext();
+      console.log('<group>')
+      this.applyAttrToContext();
       this.children.forEach((item: Group | Shape) => {
         item.setContext(this.context);
         item.drawInner();
       });
+      console.log('</group>')
+      this.restoreContext();
     }
   }
 }

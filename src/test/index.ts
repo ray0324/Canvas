@@ -1,5 +1,6 @@
 import Canvas from '../canvas';
 import { Circle, PolyLine, Rect } from '../shapes/index';
+import Group from '../core/group';
 
 var dom = <HTMLCanvasElement>document.querySelector('#c');
 
@@ -20,7 +21,7 @@ let c1 = new Circle({
   x: 200,
   y: 200,
   r: 40,
-  lineWidth: 1,
+  lineWidth: 5,
   strokeStyle: 'red'
 })
 
@@ -51,15 +52,28 @@ let p1 = new PolyLine({
   ],
   strokeStyle: 'red'
 })
+console.log(c1);
+
+console.log(p1)
+p1.attr()
+
+let g = new Group();
+console.log(g)
+g.addShape(c1);
+canvas.addGroup(g);
+
+// g.addShape(p1);
 
 
-canvas.addShape(c1);
-canvas.addShape(p1);
+// canvas.addShape(c1);
+// canvas.addShape(p1);
 canvas.addShape(c2);
-canvas.addShape(rect);
-console.log(canvas);
-console.log(canvas.getBoundary());
+// canvas.addShape(rect);
+// canvas.addGroup(g);
+// console.log(canvas);
+// console.log(canvas.getBoundary());
 
 canvas.draw();
-c1.attr('strokeStyle', 'blue');
+// c1.attr('strokeStyle', 'blue');
 
+console.log(canvas);

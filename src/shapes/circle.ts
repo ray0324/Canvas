@@ -1,5 +1,5 @@
 import Shape from '../core/shape';
-import {IAttr} from '../core/interface';
+import { IAttr } from '../core/element';
 
 interface ICircle extends Partial<IAttr> {
   x: number;
@@ -11,11 +11,11 @@ export default class Circle extends Shape {
   attrs: ICircle;
 
   constructor(attrs: ICircle) {
-    super('circle', { attrs });
-    this.canFill = true;
+    super('circle', attrs);
+    this.fillable = true;
   }
 
-  getBoundary(){
+  getBoundary() {
     const { x, y, r } = this.attrs;
     return {
       minX: x - r,

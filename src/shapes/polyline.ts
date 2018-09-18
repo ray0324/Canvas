@@ -1,5 +1,5 @@
 import Shape from '../core/shape';
-import { IAttr, Point, IBoundary } from '../core/interface';
+import { IAttr, Point, IBoundary } from '../core/element';
 
 interface IPolyLine extends Partial<IAttr> {
   p: Point[]
@@ -9,8 +9,8 @@ export default class PolyLine extends Shape {
   attrs: IPolyLine;
   
   constructor(attrs: IPolyLine) {
-    super('line', { attrs });
-    this.canFill = true;
+    super('line', attrs);
+    this.fillable = true;
   }
 
   getBoundary() {

@@ -1,7 +1,7 @@
-import { IConfig } from './core/interface';
 import Group from './core/group';
+import { IAttr } from './core/element';
 
-interface ICanvasCfg extends IConfig{
+interface Config {
   width: number;
   height: number;
   widthCanvas: number;
@@ -20,8 +20,8 @@ export default class Canvas extends Group {
   pixelRatio: number;
   containerDOM: HTMLCanvasElement;
 
-  constructor(config: ICanvasCfg ) {
-    super(config);
+  constructor(config: Config, attr?: Partial<IAttr> ) {
+    super();
     this.width = config.width;
     this.height = config.height;
     this.widthCanvas= config.widthCanvas;

@@ -1,5 +1,5 @@
 import Shape from '../core/shape';
-import { IAttr } from '../core/interface';
+import { IAttr } from '../core/element';
 
 interface IRect extends Partial<IAttr> {
   x: number;
@@ -12,8 +12,8 @@ export default class Rect extends Shape {
   attrs: IRect;
 
   constructor(attrs: IRect) {
-    super('rect', { attrs });
-    this.canFill = true;
+    super('rect', attrs);
+    this.fillable = true;
   }
 
   getBoundary() {
