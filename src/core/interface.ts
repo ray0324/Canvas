@@ -1,16 +1,7 @@
-export interface IAttr {
-  fillStyle: string;
-  font: string;
-  globalAlpha: number;
-  lineCap: string;
-  lineWidth: number;
-  lineJoin: string;
-  miterLimit: number;
-  shadowBlur: number;
-  shadowColor: string;
-  strokeStyle: string;
-  textAlign: string;
-  textBaseline: string;
+// CanvasRenderingContext2D的属性
+type CanvasRenderingContext2DProperties = 'fillStyle' | 'font' | 'globalAlpha' | 'lineCap' | 'lineWidth' | 'lineJoin' | 'miterLimit' | 'shadowBlur' | 'shadowColor' | 'strokeStyle' | 'textAlign' | 'textBaseline';
+
+export interface IAttr extends Partial<Pick<CanvasRenderingContext2D, CanvasRenderingContext2DProperties>> {
   lineDash: number[];
   [key:string]:any;
 }
