@@ -1,7 +1,7 @@
 import Shape from '../core/shape';
 import { IAttr, Point, IBoundary } from '../core/element';
 
-interface IPolyLine extends Partial<IAttr> {
+interface IPolyLine extends IAttr {
   p: Point[]
 }
 
@@ -31,8 +31,8 @@ export default class PolyLine extends Shape {
     this.context.beginPath();
     this.context.moveTo(p[0].x,p[0].y);
     for(let i = 1;i<p.length;i++){
-      this.context.lineTo(p[i].x,p[i].y)
+      this.context.lineTo(p[i].x,p[i].y);
     }
-    console.log('create-polyLine-path');
+    // console.log('create-polyLine-path');
   }
 }

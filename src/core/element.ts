@@ -1,4 +1,5 @@
 import guid from './id';
+
 type Context2DProps = 'fillStyle' | 'font' | 'globalAlpha' | 'lineCap' | 'lineWidth' | 'lineJoin' | 'miterLimit' | 'shadowBlur' | 'shadowColor' | 'strokeStyle' | 'textAlign' | 'textBaseline';
 
 export interface IAttr extends Partial<Pick<CanvasRenderingContext2D, Context2DProps>> {
@@ -6,7 +7,7 @@ export interface IAttr extends Partial<Pick<CanvasRenderingContext2D, Context2DP
   [key: string]: any;
 }
 
-export interface IBoundary {
+export type IBoundary = {
   minX: number;
   minY: number;
   maxX: number;
@@ -32,18 +33,18 @@ export class Element {
   // 绘图环境
   public context: CanvasRenderingContext2D = null;
   // 元素特性
-  public attrs: Partial<IAttr>;
+  public attrs: IAttr;
 
-  constructor(attrs?: Partial<IAttr>) {
+  constructor(attrs?: IAttr) {
     if (attrs) this.attrs = Object.assign({}, this.attrs, attrs);
   }
 
-  attr(): Partial<IAttr>;
+  attr(): IAttr;
   attr<T extends keyof IAttr>(param: T): IAttr[T];
-  attr(param: Partial<IAttr>): void;
+  attr(param: IAttr): void;
   attr<T extends keyof IAttr>(param: T, value: IAttr[T]): void;
 
-  attr<T extends keyof IAttr>(param?: T | Partial<IAttr>, value?: IAttr[T]): Partial<IAttr> | IAttr[T] | void{
+  attr<T extends keyof IAttr>(param?: T | IAttr, value?: IAttr[T]): IAttr | IAttr[T] | void{
     // 无参数 返回当前类所有属性
     if (arguments.length === 0 ) {
       return this.attrs;
@@ -76,23 +77,27 @@ export class Element {
     return this.context;
   }
 
-  applyAttrToContext() {
-    // console.log('this',this);
-    if (!this.attrs) return;
-    // debugger;
-    const ctx = this.context;
-    ctx.fillStyle = this.attrs.fillStyle;
-    ctx.font = this.attrs.font;
-    ctx.globalAlpha = this.attrs.globalAlpha;
-    ctx.lineCap = this.attrs.lineCap;
-    ctx.lineWidth = this.attrs.lineWidth;
-    ctx.lineJoin = this.attrs.lineJoin;
-    ctx.miterLimit = this.attrs.miterLimit;
-    ctx.shadowBlur = this.attrs.shadowBlur;
-    ctx.shadowColor = this.attrs.shadowColor;
-    ctx.strokeStyle = this.attrs.strokeStyle;
-    ctx.textAlign = this.attrs.textAlign;
-    this.attrs.lineDash && ctx.setLineDash(this.attrs.lineDash);
+  applyAttrToContext(attrs?: IAttr) {
+    if (!this.attrs && !attrs) return;
+    // 优先级： 当前元素>父级元素定义的Attr(父级元素一般为Group)
+    const context = {...attrs, ...this.attrs};
+    [
+      'fillStyle',
+      'font',
+      'globalAlpha',
+      'lineCap',
+      'lineWidth',
+      'lineJoin',
+      'miterLimit',
+      'shadowBlur',
+      'shadowColor',
+      'strokeStyle',
+      'textAlign'
+    ].forEach((k: Context2DProps)=>{
+      this.context[k] = context[k];
+    })
+    // 虚线
+    context.lineDash && this.context.setLineDash(context.lineDash);
   }
 
   setContext(ctx: CanvasRenderingContext2D) {

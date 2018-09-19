@@ -22,7 +22,7 @@ let c1 = new Circle({
   y: 200,
   r: 40,
   lineWidth: 5,
-  strokeStyle: 'red'
+  strokeStyle: 'purple'
 })
 
 let c2 = new Circle({
@@ -50,25 +50,30 @@ let p1 = new PolyLine({
     { x: 220, y: 310 },
     { x: 120, y: 330 }
   ],
-  strokeStyle: 'red'
+  // strokeStyle: 'red'
 })
 console.log(c1);
 
-console.log(p1)
+console.log(p1);
 p1.attr()
 
-let g = new Group();
-console.log(g)
-g.addShape(c1);
+let g = new Group({
+  strokeStyle: 'green',
+  lineWidth: 8,
+  fillStyle: 'red'
+});
+
+console.log(g);
+
 canvas.addGroup(g);
 
-// g.addShape(p1);
-
+g.addShape(p1);
+g.addShape(c1);
 
 // canvas.addShape(c1);
 // canvas.addShape(p1);
 canvas.addShape(c2);
-// canvas.addShape(rect);
+canvas.addShape(rect);
 // canvas.addGroup(g);
 // console.log(canvas);
 // console.log(canvas.getBoundary());

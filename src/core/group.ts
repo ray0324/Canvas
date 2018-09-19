@@ -4,7 +4,7 @@ import Shape from './shape';
 export default class Group extends Element {
 
   children: Array<Element> = [];
-  constructor(attrs?: Partial<IAttr>) {
+  constructor(attrs?: IAttr) {
     super(attrs);
   }
 
@@ -42,7 +42,7 @@ export default class Group extends Element {
     }
     if (this.visible) {
       this.saveContext();
-      console.log('<group>')
+      console.log('<group>');
       this.applyAttrToContext();
       this.children.forEach((item: Group | Shape) => {
         item.setContext(this.context);

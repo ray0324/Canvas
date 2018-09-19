@@ -1,7 +1,7 @@
 import Shape from '../core/shape';
 import { IAttr } from '../core/element';
 
-interface IRect extends Partial<IAttr> {
+interface IRect extends IAttr {
   x: number;
   y: number;
   width: number;
@@ -34,6 +34,6 @@ export default class Rect extends Shape {
     this.context.lineTo(x+width,y+height);
     this.context.lineTo(x,y+height);
     this.context.closePath();
-    console.log('create-rect-path');
+    // console.log('create-rect-path');
   }
 }

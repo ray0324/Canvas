@@ -2,15 +2,15 @@ import { Element, IAttr } from './element';
 
 export default class Shape extends Element {
   // 图形类型
-  protected type: string;
+  protected shapetype: string;
   // 可描边
   protected canStroke: boolean = true;
   // 可填充
   protected fillable: boolean = false;
 
-  constructor(type: string, attrs: Partial<IAttr>) {
+  constructor(type: string, attrs: IAttr) {
     super(attrs);
-    this.type = type;
+    this.shapetype = type;
   }
 
   drawInner() {
@@ -19,10 +19,10 @@ export default class Shape extends Element {
     }
     if (this.visible) {
       this.saveContext();
-      console.log('<shape>')
-      this.applyAttrToContext();
+      console.log('<shape>');
+      this.applyAttrToContext(this.attrs);
       this.createPath();
-      if (this.fillable) {
+      if (this.fillable && this.attrs.fillStyle) {
         this.getContext().fill();
       }
       if (this.canStroke) {

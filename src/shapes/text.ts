@@ -1,7 +1,7 @@
 import Shape from '../core/shape';
 import { IAttr } from '../core/element';
 
-interface IText extends Partial<IAttr> {
+interface IText extends IAttr {
   x: number;
   y: number;
 }

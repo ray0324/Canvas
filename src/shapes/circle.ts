@@ -1,7 +1,7 @@
 import Shape from '../core/shape';
 import { IAttr } from '../core/element';
 
-interface ICircle extends Partial<IAttr> {
+interface ICircle extends IAttr {
   x: number;
   y: number;
   r: number;
@@ -30,6 +30,6 @@ export default class Circle extends Shape {
     const { x, y, r } = this.attrs;
     this.context.beginPath();
     this.context.arc(x, y, r, 0, Math.PI * 2, false);
-    console.log('create-circle-path');
+    // console.log('create-circle-path');
   }
 }
